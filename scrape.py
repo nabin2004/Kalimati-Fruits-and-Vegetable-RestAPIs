@@ -4,6 +4,7 @@ from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from webdriver_manager.firefox import GeckoDriverManager
 import pandas as pd
+import datetime
 
 # Set up Firefox options
 options = Options()
@@ -19,7 +20,7 @@ driver.get(url)
 
 # Wait for the page to load
 driver.implicitly_wait(10)  # Wait for up to 10 seconds for elements to be ready
-date = driver.find_element(By.CSS_SELECTOR, "h4.bottom-head")
+date = driver.find_element(By.CSS_SELECTOR, "h4.bottom-head").text
 # Extract the table data
 data = []
 table = driver.find_element(By.ID, "commodityPriceParticular")
@@ -46,9 +47,13 @@ for row in rows[:]:  # Skip the header row
 # Close the WebDriver
 driver.quit()
 
-# Create a DataFrame for better visualization
 df = pd.DataFrame(data)
 print(df)
-print(date)
+
+# Adding a new column 'Date' with the extracted date for all rows
+df["Date"] = date
+
+current_date = datetime.datetime.today().strftime('%Y-%m-%d')
+
 # Optionally, save the data to a CSV file
-df.to_csv(f'commodity_prices.csv', index=False)
+df.to_csv(f'data/commodity_prices_{current_date}.csv', index=False)
