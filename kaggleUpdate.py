@@ -2,10 +2,6 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 import os
 from datetime import datetime
 
-# Set Kaggle API credentials from environment variables
-os.environ["KAGGLE_USERNAME"] = os.getenv("KAGGLEUSERNAME")
-os.environ["KAGGLE_KEY"] = os.getenv("KAGGLEKEY")
-
 # Initialize API
 api = KaggleApi()
 api.authenticate()
