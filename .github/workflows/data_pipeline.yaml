@@ -2,8 +2,8 @@ name: Kalimati Data Pipeline
 
 on:
   schedule:
-    - cron: '45 7 * * *'  # Runs at 1:30 PM Nepal Time daily
-  workflow_dispatch:  # Allows manual triggering of the workflow
+    - cron: '50 8 * * *'  # Runs at 8:50 AM UTC, which is 2:35 PM Nepal Time daily
+  workflow_dispatch:  
 
 jobs:
   run-scraper:
@@ -34,7 +34,7 @@ jobs:
           chmod 600 ~/.kaggle/kaggle.json
 
       - name: Run the scraper
-        run: python scrape.py  # Replace with the name of your scraping script
+        run: python scrape.py  
 
       - name: Upload data to Kaggle
-        run: python kaggleUpdate.py
+        run: python kaggleUpdate.py  
