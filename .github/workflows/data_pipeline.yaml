@@ -2,13 +2,8 @@ name: Kalimati Data Pipeline
 
 on:
   schedule:
-<<<<<<< HEAD
-    - cron: '45 7 * * *'  # Runs at 1:30 PM Nepal Time daily
-  workflow_dispatch: 
-=======
-    - cron: '12 9 * * *'  # Runs at 9:12 AM UTC, which is 2:57 PM Nepal Time daily
+    - cron: '55 9 * * *'  # Runs at 9:55 AM UTC, which is 3:40 PM Nepal Time daily
   workflow_dispatch:  
->>>>>>> 8b64582ca7283b5f289509b88f7219fc2c550776
 
 jobs:
   run-scraper:
@@ -41,5 +36,15 @@ jobs:
       - name: Run the scraper
         run: python scrape.py  
 
+      - name: Commit and Push Updated Dataset to GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Update dataset in data/ folder"
+          git push origin main  # Specify the branch to push to
+
       - name: Upload data to Kaggle
-        run: python kaggleUpdate.py  
+        run: python kaggleUpdate.py
