@@ -38,7 +38,7 @@ jobs:
 
       - name: Commit and Push Updated Dataset to GitHub
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
