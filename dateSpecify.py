@@ -9,7 +9,7 @@ import pandas as pd
 
 # Set up Firefox options
 options = Options()
-options.add_argument("--headless")  
+
 
 # Set up the Firefox service with the driver manager
 service = Service(GeckoDriverManager().install())
@@ -28,8 +28,8 @@ try:
 except:
     print("Preloader took too long to disappear")
 
-# Set the date to "2024-11-05"
-specify_date = '2024-11-05'
+# Set the date 
+specify_date = '2024-11-09'
 date_input = driver.find_element(By.ID, "datePricing")
 driver.execute_script(f"arguments[0].value = '{specify_date}';", date_input)
 
