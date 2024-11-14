@@ -1,4 +1,4 @@
-name: Kalimati Data Pipeline
+name: Kalimati Data Pipeline 
 
 on:
   schedule:
